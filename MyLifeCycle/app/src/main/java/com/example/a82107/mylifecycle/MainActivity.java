@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
 
-        Toast.makeText(this, "onCreate() 호출됨",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "onDestroy() 호출됨",Toast.LENGTH_SHORT).show();
     }
 
     @Override
