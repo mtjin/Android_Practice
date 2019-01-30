@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //RECEIVE_SMS 사용권한이 주어져있는지 체크함
         int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_SMS);
         if(permissionCheck == PackageManager.PERMISSION_GRANTED){
             Toast.makeText(this, "SMS 수신 권한 주어져있음.",Toast.LENGTH_LONG).show();
