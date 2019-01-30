@@ -12,15 +12,18 @@ import android.util.Log;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+//브로트캐스트를 상속받음
 public class SmsReceiver extends BroadcastReceiver {
 
     private static final String TAG = "SmsReceive";
+    //파싱
     private static SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
     @Override
     public void onReceive(Context context, Intent intent) {
         Log.d(TAG, "Onreceive() 호출됨");
 
+        //Bundle로 받을 수 있다
         Bundle bundle = intent.getExtras();
         SmsMessage[] messages = parseSmsMessage(bundle);
         //한개라도 메세지가 있을 경우
@@ -46,8 +49,10 @@ public class SmsReceiver extends BroadcastReceiver {
                 | Intent.FLAG_ACTIVITY_SINGLE_TOP
                 | Intent.FLAG_ACTIVITY_CLEAR_TOP
         );
+        //인텐트에 데이터전달
         intent.putExtra("sender", sender);
         intent.putExtra("contents", contents);
+        //포맷대로 데이터 가져옴
         intent.putExtra("receivedDate", format.format(receivedDate));
         context.startActivity(intent);
     }
