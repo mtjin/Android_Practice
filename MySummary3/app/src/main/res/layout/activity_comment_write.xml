@@ -11,4 +11,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="한줄평 작성하기" />
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:rating="4.1"
+        android:stepSize="0.1"
+        style="?android:attr/ratingBarStyle"/>
+    <EditText
+        android:id="@+id/contentsInput"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:maxLength="100"
+        android:gravity="top"
+        android:padding="10dp"
+        android:textSize="18dp"
+        android:hint="100자 이내로 작성해주세요"
+        android:textCursorDrawable="@color/colorPrimaryDark"
+        android:background="@drawable/border"/>
+
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="저장" />
+
 </LinearLayout>
