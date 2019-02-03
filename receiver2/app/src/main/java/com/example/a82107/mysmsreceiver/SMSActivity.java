@@ -30,6 +30,7 @@ public class SMSActivity extends AppCompatActivity {
             }
         });
 
+        //인텐트정보받아옴
         Intent passedIntent = getIntent();
         processCommand(passedIntent);
     }

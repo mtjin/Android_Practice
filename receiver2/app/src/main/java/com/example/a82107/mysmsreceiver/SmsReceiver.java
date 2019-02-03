@@ -45,6 +45,7 @@ public class SmsReceiver extends BroadcastReceiver {
     private void sendToActivity(Context context, String sender, String contents, Date receivedDate) {
         //getApplicationContext는 onReceice에서만 사용할 수 있으므로 onReceive에서 context를 받아와서 인텐트에다가 쓴다.
         Intent intent = new Intent(context, SMSActivity.class);
+        //이 세가지 플래그는 보통 필수적으로 달아준다 or로 |
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
                 | Intent.FLAG_ACTIVITY_SINGLE_TOP
                 | Intent.FLAG_ACTIVITY_CLEAR_TOP
