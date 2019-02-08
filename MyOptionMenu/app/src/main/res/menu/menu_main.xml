@@ -6,11 +6,14 @@
         android:icon="@drawable/menu_refresh"
         android:title="새로고침"
         app:showAsAction="always" />
+
+    <!--android가 아니라 app:actionLayout이다 주의-->
     <item
         android:id="@+id/menu_search"
+        app:actionLayout="@layout/search_layout"
         android:icon="@drawable/menu_search"
         android:title="검색"
-        app:showAsAction="always" />
+        app:showAsAction="always|withText" />
     <item
         android:id="@+id/menu_settings"
         android:icon="@drawable/menu_settings"
