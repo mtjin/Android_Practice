@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     //ListFragment에서 이 메소드를 호출해서 엑티비티에서 ViewerFragment의 setImage메소드를 호출해서 동작
     //프래그먼트끼리 소통이 불가하므로 엑티비티를 거쳐서 이런식으로 동작하게만듬
     //하나의 프래그먼트에서 다른 프래그먼트로 직접 접근할 수 없으므로 시스템 역할을 하는 액티비티를 통해 명령이나 데이터를 전달해야 합니다.
+    //
     public  void onImageChange(int index){
         fragment2.setImage(index);
     }
