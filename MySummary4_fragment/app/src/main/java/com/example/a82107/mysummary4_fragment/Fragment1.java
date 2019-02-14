@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class Fragment1 extends Fragment {
+    //이 프래그먼트가 꼭 MainActivirt말고 다른 액티비티에서도 사용될 수 있으니깐 인터페이스를 이용하는 것이다.
     FragmentCallback callback;
     TextView textView;
 
