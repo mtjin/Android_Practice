@@ -1,5 +1,6 @@
 package com.example.a82107.cinemaapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -168,6 +169,8 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);*/
         return true;
     }
+
+
 
     //영화리스트 뷰페이저 어댑터(어댑터 안에서 각각의 영화를 데이터로서 관리한다)
     class MoviePagerAdapter extends FragmentStatePagerAdapter {

@@ -270,6 +270,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/background_light"
             android:orientation="vertical">
 
             <LinearLayout
@@ -280,6 +281,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@android:color/background_light"
                     android:padding="10dp"
                     android:text="한줄평"
                     android:textStyle="bold" />
@@ -287,6 +289,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@android:color/background_light"
                     android:gravity="right">
 
                     <TextView
@@ -305,7 +308,8 @@
             <ListView
                 android:id="@+id/listView"
                 android:layout_width="match_parent"
-                android:layout_height="200dp" />
+                android:layout_height="200dp"
+                android:background="@android:color/background_light" />
 
 
             <Button
@@ -322,6 +326,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/background_light"
             android:orientation="horizontal">
 
             <ImageButton
