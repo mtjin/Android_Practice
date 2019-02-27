@@ -1,40 +1,39 @@
 package com.example.a82107.myserver;
 
+import android.app.Service;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.os.IBinder;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-//인터넷기능을 쓸려면 maifest에  <uses-permission android:name="android.permission.INTERNET"/> 추가해야함
-public class MainActivity extends AppCompatActivity {
+public class ChatService extends Service {
+    public ChatService(){
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        Button button = findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                /*ServerThread thread = new ServerThread();
-                thread.start();*/
-                Intent intent = new Intent(getApplicationContext(), ChatService.class);
-                startService(intent);
-            }
-        });
     }
 
-    /*class ServerThread extends Thread {
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        MainActivity.ServerThread thread = new MainActivity.ServerThread();
+        thread.start();
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        return super.onStartCommand(intent, flags, startId);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
+
+    class ServerThread extends Thread {
         @Override
         public void run() {
             //클라이언트가 이 포트번호로만 접속을 해야함
@@ -46,8 +45,8 @@ public class MainActivity extends AppCompatActivity {
                 while (true) {//클라이언트 연결 대기상태로 들어가게됨(대기를 하다가 클라이언트가 접속을 하게되면 소캣객체가 반환됨)
                     //이 소캣객체를 통해서 클라이언트가 요청한 데이터를 받을 수 있다.
                     Socket socket = server.accept();
-                    *//*InetAddress clientHost = socket.getLocalAddress();
-                    int clientPort = socket.getPort();*//*
+                    /*InetAddress clientHost = socket.getLocalAddress();
+                    int clientPort = socket.getPort();*/
 
 
                     ObjectInputStream instream = new ObjectInputStream((socket.getInputStream()));
@@ -69,5 +68,11 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-    }*/
+    }
+
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
+    }
 }

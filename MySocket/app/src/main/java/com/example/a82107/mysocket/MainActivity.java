@@ -4,23 +4,29 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.webkit.HttpAuthHandler;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.logging.Handler;
 import java.util.logging.SocketHandler;
 
 //MyServer클래스와 통신(클라이언트역할함 이프로젝트는)
 //인터넷기능을 쓸려면 manifest에  <uses-permission android:name="android.permission.INTERNET"/> 추가해야함
 //UI까지 손댈려면 핸들러를 사용해야한다.
 public class MainActivity extends AppCompatActivity {
-
+    TextView textView;
+android.os.Handler handler = new android.os.Handler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        textView = findViewById(R.id.textView);
 
         Button button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -32,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    class ClientThread extends  Thread{
-        public  void run(){
+    class ClientThread extends Thread {
+        public void run() {
             //어떤 컴퓨터에 접속할지 IP지정(localhost라 하면 자기 자신을 가리킴)
             String host = "localhost";
             //Server와 동일하게 포트 설정해줌
@@ -54,6 +60,16 @@ public class MainActivity extends AppCompatActivity {
                 ObjectInputStream inStream = new ObjectInputStream(socket.getInputStream());
                 Object input = inStream.readObject();
                 Log.d("ClientThread", "받은 데이터 : " + input);
+
+                //화면에 뿌려줄떄는 핸들러 사용해야함
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        textView.setText("받은데이터 : " + input);
+
+                    }
+                });
+
 
                 socket.close();
             } catch (IOException e) {
