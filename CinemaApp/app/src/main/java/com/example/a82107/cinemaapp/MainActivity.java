@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 //내가 만든 인터페이스를 추가함(FragmentCallback)
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, FragmentInfoCall {
+        implements NavigationView.OnNavigationItemSelectedListener, FragmentInfoCall, MovieInfoFunction {
 
     ViewPager pager;
     Fragment asura;
@@ -168,6 +168,55 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);*/
         return true;
+    }
+
+    //MovieInfoFunction 인터페이스 구현 (상세정보 프래그먼트와 소통)
+    public void showCommentWriteActivity(){
+        Intent intent = new Intent(getApplicationContext(), CommentWriteActivity.class);
+        startActivityForResult(intent, 101);
+    }
+    //MovieInfoFunction 인터페이스 구현 (상세정보 프래그먼트와 소통)
+    public void showViewAllActivity(){
+        Intent intent = new Intent(getApplicationContext(), ViewAllActivity.class);
+        //getCount를 for문에 하면 계속 참조하므로 밖에 뺴준다.
+        int count = GundoInfoFragment.adapter.getCount();
+        ArrayList<CommentItem> commentItems = new ArrayList<CommentItem>(count);
+
+        for(int i =0; i <count; i++){
+            commentItems.add((CommentItem) GundoInfoFragment.adapter.getItem(i));
+        }
+        //prarcelable을 구현한 객체를 담은 ArrayList 데이터를 보냄
+        //객체만 보낼떈 그냥 putExtra로함 =
+        //ex) intent.puExtra("ex", new CommentItem(new CommentItem(R.drawable.user1, 5,"wow123", "너무 재밌어요");
+        intent.putParcelableArrayListExtra("commentItems", commentItems);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivityForResult(intent, 102);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        //작성하기 결과
+        if(requestCode == 101){
+            if(intent != null){
+                float ratingScore = intent.getFloatExtra("ratings", 5);
+                String contents = intent.getStringExtra("contents");
+                GundoInfoFragment.adapter.addItem(new CommentItem(R.drawable.user1, ratingScore,"JIN210", contents));
+                //어댑터갱신
+                GundoInfoFragment.adapter.notifyDataSetChanged();
+
+            }
+        }
+        //모두보기 결과
+        else if(requestCode == 102){
+            //모두보기화면에서 작성한 데이터들을 모두 가져옴
+            ArrayList<CommentItem> intentItems = intent.getParcelableArrayListExtra("intentItems");
+            //리스트뷰에추가
+            for(int i=0; i <intentItems.size();i++){
+                GundoInfoFragment.adapter.addItem(intentItems.get(i));
+            }
+            GundoInfoFragment.adapter.notifyDataSetChanged();
+        }
     }
 
 

@@ -19,7 +19,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class GundoInfoFragment extends Fragment {
-    CommentAdapter adapter;
+    static CommentAdapter adapter;
 
     ImageButton likeButton;
     ImageButton dislikeButton;
@@ -36,16 +36,24 @@ public class GundoInfoFragment extends Fragment {
 
     View rootView2;
 
+    //인터페이스
+    MovieInfoFunction movieInfoFunction;
 
     @Override
-    public void onAttachFragment(Fragment childFragment) {
-        super.onAttachFragment(childFragment);
-
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof MovieInfoFunction) {
+            movieInfoFunction = (MovieInfoFunction) context;
+        }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
+        //이건 꼭 필수는 아니지만 개념적으로보면 해주는게 좋음
+        if (movieInfoFunction != null) {
+            movieInfoFunction = null;
+        }
     }
 
     @Nullable
@@ -68,6 +76,7 @@ public class GundoInfoFragment extends Fragment {
 
         adapter = new CommentAdapter();
         adapter.addItem(new CommentItem(R.drawable.user1, 5, "Android", "와 이건 대작입니다!!"));
+        adapter.addItem(new CommentItem(R.drawable.user1, 5, "Android2", "너무 재밌습니다"));
 
         //리스트뷰에 어뎁터 연결
         listView.setAdapter(adapter);
@@ -106,7 +115,7 @@ public class GundoInfoFragment extends Fragment {
             public void onClick(View v) {
                 Toast.makeText(getActivity(), "모두보기", Toast.LENGTH_SHORT).show();
                 //모두보기화면으로 이동
-                showViewAllActivity();
+                movieInfoFunction.showViewAllActivity();
             }
         });
 
@@ -117,7 +126,7 @@ public class GundoInfoFragment extends Fragment {
                 Toast.makeText(getActivity(), "작성하기", Toast.LENGTH_SHORT).show();
                 ;
                 //작성하기 화면으로 이동
-                showCommentWriteActivity();
+                movieInfoFunction.showCommentWriteActivity();
 
             }
         });
@@ -203,7 +212,7 @@ public class GundoInfoFragment extends Fragment {
         }
     }
 
-    public void showCommentWriteActivity(){
+    /*public void showCommentWriteActivity(){
         Intent intent = new Intent(getActivity(), CommentWriteActivity.class);
         startActivityForResult(intent, 101);
     }
@@ -219,11 +228,11 @@ public class GundoInfoFragment extends Fragment {
         }
         //prarcelable을 구현한 객체를 담은 ArrayList 데이터를 보냄
         //객체만 보낼떈 그냥 putExtra로함 =
-        //ex) intent.puExtra("ex", new CommentItem(new CommentItem(R.drawable.user1, 5,"JIN210", "정말 재밌고 긴장감이 넘쳤어요!!^^");
+        //ex) intent.puExtra("ex", new CommentItem(new CommentItem(R.drawable.user1, 5,"wow123", "너무 재밌어요");
         intent.putParcelableArrayListExtra("commentItems", commentItems);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivityForResult(intent, 102);
-    }
+    }*/
 
 
 }
