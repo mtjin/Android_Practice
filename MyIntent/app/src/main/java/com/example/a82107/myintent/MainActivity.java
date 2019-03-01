@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
                 //응답을 받을 경우는 startActivityForResult를 사용한다.
                 //아니면 그냥 StartActivity(intent)라 하면된다.
+                //즉 둘다 액티비티를 화면에 띄우고  인텐트를 전달해주는 역할
                 startActivityForResult(intent, 101);
             }
         });

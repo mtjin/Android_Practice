@@ -19,7 +19,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                //해시처럼 키와  벨류값을 설정
+                //해시처럼 키와  벨류값을 설정 (이 액티비티를 불러준 곳에 데이터를 전달할 용도)
                 intent.putExtra("name", "mike");
                 //Result_OK는 일종의신호이다. 이상이없는 신호라는걸 의미함
                 setResult(Activity.RESULT_OK, intent);
