@@ -21,6 +21,7 @@ public class MenuActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 //해시처럼 키와  벨류값을 설정
                 intent.putExtra("name", "mike");
+                //Result_OK는 일종의신호이다. 이상이없는 신호라는걸 의미함
                 setResult(Activity.RESULT_OK, intent);
 
                 finish();

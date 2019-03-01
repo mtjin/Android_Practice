@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     //세번째 매개변수에서  메뉴엑티비티에서 보낸 intent를 전달받음
     //리퀘스트코드는 메뉴화면을 띄울떄 전달한 101코드가 메뉴화면으로갓다가 다시 여기로 resultCode로 전달됨.
+    //즉 resultCode로 어떤화면으로부터 왔는지 알 수 있음
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
