@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             super.handleMessage(msg);
             Bundle bundle = msg.getData();
             int value = bundle.getInt("value");
-            textView.setText("현재 값 : " + value);
+            textView.setText("현재 값 : " + value); //핸들러를 이용해 스레드에서 UI접근 가능 
         }
     }
 }
