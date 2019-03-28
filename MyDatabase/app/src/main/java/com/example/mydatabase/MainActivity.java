@@ -15,6 +15,7 @@ import android.widget.TextView;
 //2. 테이블 만들기
 //3. 레코드(데이터) 추가하기
 //4. 데이터 조회화기
+//DB쿼리문 작성시 공백이 매우 중요하므로 주의해야한다.
 public class MainActivity extends AppCompatActivity {
     EditText editText;
     EditText editText2;
