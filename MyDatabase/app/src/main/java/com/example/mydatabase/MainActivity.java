@@ -110,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
         println("createTable() 호출됨.");
 
         if(database!= null) {
+            //_id는 SQLite에서 내부적으로 관리되는 내부 id이다.
             String sql = "create table " + tableName + "(_id integer PRIMARY KEY autoincrement, name text, age integer, mobile text)";
             database.execSQL(sql);
 
