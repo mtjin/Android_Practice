@@ -10,7 +10,7 @@ public class NetworkStatus {
     public static final int TYPE_NOT_CONNECTED = 3;
 
     public static int getConnectivityStatus(Context context){//해당 context의 서비스를 사용하기위해 context 객체를 받는다.
-        ConnectivityManager manager = (ConnectivityManager) context.getSystemService(context.CONNECTIVITY_SERVICE); \
+        ConnectivityManager manager = (ConnectivityManager) context.getSystemService(context.CONNECTIVITY_SERVICE);
 
         NetworkInfo networkInfo = manager.getActiveNetworkInfo();
         if(networkInfo != null){
