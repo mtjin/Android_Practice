@@ -15,14 +15,20 @@ import java.io.IOException;
 
 //sd카드 접근, 녹음 접근구너한 필요
 public class MainActivity extends AppCompatActivity {
-    //프로젝트의 res/raw 폴더에 a.mp3 라는 이름으로 음악 파일을 넣어두었다면 다음과 같이 지정할 수 있습니다.
-    //MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.a);
-    //단말 SD 카드에 넣어둔 파일의 폴더 위치가 /sdcard/a.mp3라면 다음과 같이 지정할 수 있습니다.
-    //String filepath = "/sdcard/a.mp3";
+
 
     //스마트폰에서 저장하면 확장자가 기본이 amr 로 보통 저장이된다.
-    public static String url = "http://sites.google.com/site/ubiaccessmobile/sample_audio.amr";
+    //public static String url = "http://sites.google.com/site/ubiaccessmobile/sample_audio.amr";
 
+    /*마이크로 입력되는 음성을 녹음할 때는 미디어리코더(MediaRecorder) 객체가 사용됩니다.
+
+    다음 과정을 거쳐 녹음할 수 있습니다.
+
+    1 미디어리코더 객체 생성
+    2 오디오 입력 및 출력 형식 설정
+    3 오디오 인코더와 파일 지정
+    4 녹음 시작
+*/
     MediaRecorder recorder; //녹음관련객체
     String filename;
 
