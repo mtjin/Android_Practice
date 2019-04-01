@@ -11,6 +11,11 @@ import java.io.IOException;
 
 //인터넷권한필요
 public class MainActivity extends AppCompatActivity {
+    //프로젝트의 res/raw 폴더에 a.mp3 라는 이름으로 음악 파일을 넣어두었다면 다음과 같이 지정할 수 있습니다.
+    //MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.a);
+    //단말 SD 카드에 넣어둔 파일의 폴더 위치가 /sdcard/a.mp3라면 다음과 같이 지정할 수 있습니다.
+    //String filepath = "/sdcard/a.mp3";
+    
     //스마트폰에서 저장하면 확장자가 기본이 amr 로 보통 저장이된다.
     public static String url = "http://sites.google.com/site/ubiaccessmobile/sample_audio.amr";
 

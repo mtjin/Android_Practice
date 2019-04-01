@@ -27,7 +27,7 @@ public class CameraSurfaceView extends SurfaceView implements SurfaceHolder.Call
 
     private void init(Context context) {
         holder = getHolder(); //서피스홀더객체 참조
-        holder.addCallback(this);
+        holder.addCallback(this); //콜백을 받을 수 있게 콜백추가해줌
     }
 
     //SurfaceView 객체가 메모리에 만들어질 때 자동으로 호출되는 surfaceCreated 메소드 안에서는 카메라 객체를 오픈하고 카메라 객체에 서피스홀더 객체를 설정합니다
