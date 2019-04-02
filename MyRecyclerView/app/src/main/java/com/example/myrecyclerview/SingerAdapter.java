@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 //SingerAdapter 안에 뷰홀더라는 걸 정의하기위해 <SingerAdapter.ViewHolder> 라 해줌
 //뷰홀더라고 하는 것은 각각의 아이템을 위한 뷰를 담아주기위한 용도로 사용한다고 생각!
+//어댑터에는 SingerItem 클래스를 이용해 만들어진 객체를 여러 개 담아둘 수 있도록 하고 화면에 보일 때 사용되는 각각의 뷰는 뷰홀더에 담아둔다.
 public class SingerAdapter extends RecyclerView.Adapter<SingerAdapter.ViewHolder> {
     Context context;
 
@@ -31,7 +32,7 @@ public class SingerAdapter extends RecyclerView.Adapter<SingerAdapter.ViewHolder
         this.context =  context;
     }
 
-    @Override //아이템개수
+    @Override //어댑터에서 관리하는 아이템의 개수를 반환
     public int getItemCount() {
         return items.size();
     }
@@ -44,13 +45,13 @@ public class SingerAdapter extends RecyclerView.Adapter<SingerAdapter.ViewHolder
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View itemView = inflater.inflate(R.layout.singer_item,  viewGroup, false);//viewGroup는 각각의 아이템을 위해서 정의한 xml레이아웃의 최상위 레이아우싱다.
 
-        return new ViewHolder(itemView); //각각의 아이템을 위한 뷰를 담고있는 뷰홀더객체를 반환한다.
+        return new ViewHolder(itemView); //각각의 아이템을 위한 뷰를 담고있는 뷰홀더객체를 반환한다.(각 아이템을 위한 XML 레이아웃을 이용해 뷰 객체를 만든 후 뷰홀더에 담아 반환 ==> 여기서 각 아이템의 XML레이아웃은 이 메소드의 파라미터인 viewGroup을 통해 전달받음 )
     } //이 코드는 사실상 한번이해를 하고나면 그냥 복붙으로 쓰면된다. (i어떤것을 가지고 뷰를 만들고 그거를 뷰홀더에 넣어줄지만 정하면됨)
 
 
 
     //각각의 아이템을 위한 뷰의 xml레이아웃과 서로 뭉쳐지는(결합되는) 경우 자동으로 호출( 즉 뷰홀더가 각각의 아이템을 위한 뷰를 담아주기위한 용도인데 뷰와 아이템이 합질때 호출)
-    // Replace the contents of a view //적절한 데이터를 가져와 뷰 소유자의 레이아웃을 채우기 위해 사용
+    // Replace the contents of a view //적절한 데이터를 가져와 뷰 소유자의 레이아웃을 채우기 위해 사용(뷰홀더에 각 아이템의 데이터를 설정함)
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
         //뷰홀더라는게 바인딩 될시점
@@ -87,6 +88,7 @@ public class SingerAdapter extends RecyclerView.Adapter<SingerAdapter.ViewHolder
     }
 
     //뷰홀더
+    //뷰홀더 객체는 뷰를 담아두는 역할을 하면서 동시에 뷰에 표시될 데이터를 설정하는 역할을 맡을 수 있습니다.
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView textView;
         TextView textView2;
@@ -116,6 +118,7 @@ public class SingerAdapter extends RecyclerView.Adapter<SingerAdapter.ViewHolder
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         }
 
+        //setItem 메소드는 SingerItem 객체를 전달받아 뷰홀더 안에 있는 뷰에 데이터를 설정하는 역할을 합니다.
         public void setItem(SingerItem item) {
             textView.setText(item.getName());
             textView2.setText(item.getMobile());
